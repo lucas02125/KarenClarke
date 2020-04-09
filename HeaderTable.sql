@@ -13,3 +13,10 @@ CREATE TABLE [dbo].[HurricaneHeader](
     [hh_name] [varchar](50) NOT NULL,
     [hh_tracks] [int] NOT NULL
 )
+
+ALTER TABLE [dbo].[HurricaneHeader] ADD CONSTRAINT [PK_HurricaneHeader] PRIMARY KEY ([hh_id])--Declares for Primary key
+GO
+
+ALTER TABLE [dbo].[HurricaneHeader] ADD CONSTRAINT [FK_HurricaneHeader] FOREIGN KEY ([hh_Value]) --Declares foriegn key to refernce the header data
+REFERENCES [dbo].[HurricaneData] ([hd_hh_Value])
+GO
