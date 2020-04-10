@@ -9,7 +9,7 @@ GO
 
 CREATE TABLE [dbo].[HurricaneData](
     [hd_id] [int] IDENTITY(1,1), --Primary key column and increments by 1
-    [hd_hh_value] [varchar](8) NOT NULL,
+    [hd_hh_value] [varchar](25) NOT NULL,
     [hd_date] [date] NOT NULL,
     [hd_time] [int] NOT NULL,
     [hd_identifier] [varchar](1) NULL,--Will add constraint for this value
