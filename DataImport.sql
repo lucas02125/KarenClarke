@@ -33,11 +33,20 @@ BEGIN
      SELECT TOP 1 @StageID = Content FROM #Imports --we are gonna use stage ID to keep track of what row we are on for reference and to remove when finished
      SELECT TOP 1 @Count = LEN(Content) - LEN(REPLACE(Content, ',', '')) FROM #Imports --number to show if row we are on is a header or dat row
      
+     ;WITH formatRowsToCol AS (
+    	SELECT value
+    	,ROW_NUMBER() OVER(PARTITION BY @StageID ORDER BY (SELECT NULL) as pr
+    	FROM #Imports i 
+	   CROSS APPLY STRING_SPLIT(@StageID, ',') as spt
+	)					      
+						      
+						      
      CASE WHEN @Count = 3 --If header row
      THEN BEGIN
      																																									
-					SELECT @FKReference = SUBSTRING(@StageID,1,8) --Gets the foreign key that we will be inserting
+	SELECT @FKReference = SUBSTRING(@StageID,1,8) --Gets the foreign key that we will be inserting
+	INSERT INTO HurricaneHeader					      
 																																																						
-     
+     	
              	                                         
                                                       
