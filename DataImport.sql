@@ -42,24 +42,52 @@ BEGIN
 						      
 						      
      IF @Count = 3 --If header row
-     BEGIN
+     BEGIN TRY 
      																																									
 	SET @FKReference = SUBSTRING(@StageID,1,8) --Gets the foreign key that we will be inserting
 	INSERT INTO HurricaneHeader		
-	     SELECT cast(r2c.[1] as varchar(8))
-         ,cast(r2c.[2] as varchar(50))
-         ,cast(r2c.[3] as int)																																																					
-     END
+	     SELECT cast(pr.[1] as varchar(8))
+         ,cast(pr.[2] as varchar(50))
+         ,cast(pr.[3] as int)	
+	     FROM r2c	
+				
+																																																			
+     END TRY
+     BEGIN CATCH
+	/* ENTER a procedure that will display the ERROR*/
+     END CATCH
      
-     ELSE
-     BEGIN
+     ELSE --If data row
+     BEGIN TRY
         
-        INSERT INTO HurricaneData
-             Select @FKReference --Adding in foreign key
-              /*Entering in rest of the parametrs To DO*/
-     END
+       INSERT INTO HurricaneData		
+	     SELECT @FKReference
+	    ,cast(pr.[1] as date)
+            ,cast(pr.[2] as int)
+            ,cast(pr.[3] as varchar(1))
+	    ,cast(pr.[4] as varchar(2))
+	    ,cast(pr.[5] as varchar(10))
+	    ,cast(pr.[6] as varchar(10))
+	    ,cast(pr.[7] as int)
+	    ,cast(pr.[8] as int)
+	    ,cast(pr.[9] as int)
+	    ,cast(pr.[10] as int)
+	    ,cast(pr.[11] as int)
+	    ,cast(pr.[12] as int)
+	    ,cast(pr.[13] as int)
+	    ,cast(pr.[14] as int)
+	    ,cast(pr.[15] as int)
+	    ,cast(pr.[16] as int)
+	    ,cast(pr.[17] as int)
+	    ,cast(pr.[18] as int)
+	    ,cast(pr.[19] as int)		
+	     FROM r2c	
+     END TRY
+     BEGIN CATCH
+	/* ENTER a procedure that will display the ERROR*/
+     END CATCH
      
-        DELETE FROM #Imports where content = @StageID
+        DELETE FROM #Imports where content = @StageID --This record will remove the top row of the staging table and continue to do so in the while loop until staging table is gone
 END
              	                                         
                                                       
