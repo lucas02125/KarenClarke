@@ -19,3 +19,25 @@ its values content into either the header or data table
     MAXERRORS = 100, --Number of syntax errors allowed in the bulk insert before the query cancels itself
     ERRORFILE = 'enter path here'
   );
+
+----------------------------------------------------------------------------------------------------
+
+DECLARE @StageID varchar(MAX)
+DECLARE @Count int
+DECLARE @FKRefernece varchar(8)
+
+--Parsing the data
+WHILE EXISTS(SELECT * FROM #Imports)
+BEGIN 
+
+     SELECT TOP 1 @StageID = Content FROM #Imports --we are gonna use stage ID to keep track of what row we are on for reference and to remove when finished
+     SELECT TOP 1 @Count = LEN(Content) - LEN(REPLACE(Content, ',', '')) FROM #Imports --number to show if row we are on is a header or dat row
+     
+     CASE WHEN @Count = 3 --If header row
+     THEN BEGIN
+     																																									
+					SELECT @FKReference = SUBSTRING(@StageID,1,8) --Gets the foreign key that we will be inserting
+																																																						
+     
+             	                                         
+                                                      
