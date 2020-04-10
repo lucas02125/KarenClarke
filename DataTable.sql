@@ -14,8 +14,8 @@ CREATE TABLE [dbo].[HurricaneData](
     [hd_time] [int] NOT NULL,
     [hd_identifier] [varchar](1) NULL,--Will add constraint for this value
     [hd_status] [varchar](2) NOT NULL,
-    [hd_latitude] [varchar](10) NOT NULL,
-    [hd_longitude] [varchar](10) NOT NULL,
+    [hd_latitude] [varchar](10) NOT NULL, -- For the longitude and latitude, could potentially convert and use geo data type
+    [hd_longitude] [varchar](10) NOT NULL, --However, seeing how data is being loaded, this option may not be possible to convert
     [hd_windSpeed] [int] NOT NULL,
     [hd_NE34] [int] NULL, --Will add constraint for values this and below
     [hd_SE34] [int] NULL,
