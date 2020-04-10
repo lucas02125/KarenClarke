@@ -33,7 +33,7 @@ BEGIN
      SELECT TOP 1 @StageID = Content FROM #Imports --we are gonna use stage ID to keep track of what row we are on for reference and to remove when finished
      SELECT TOP 1 @Count = LEN(Content) - LEN(REPLACE(Content, ',', '')) FROM #Imports --number to show if row we are on is a header or dat row
      
-     ;WITH formatRowsToCol AS (
+     ;WITH r2c AS (
     	SELECT value
     	,ROW_NUMBER() OVER(PARTITION BY @StageID ORDER BY (SELECT NULL) as pr
     	FROM #Imports i 
@@ -41,12 +41,25 @@ BEGIN
 	)					      
 						      
 						      
-     CASE WHEN @Count = 3 --If header row
-     THEN BEGIN
+     IF @Count = 3 --If header row
+     BEGIN
      																																									
-	SELECT @FKReference = SUBSTRING(@StageID,1,8) --Gets the foreign key that we will be inserting
-	INSERT INTO HurricaneHeader					      
-																																																						
-     	
+	SET @FKReference = SUBSTRING(@StageID,1,8) --Gets the foreign key that we will be inserting
+	INSERT INTO HurricaneHeader		
+	     SELECT cast(r2c.[1] as varchar(8))
+         ,cast(r2c.[2] as varchar(50))
+         ,cast(r2c.[3] as int)																																																					
+     END
+     
+     ELSE
+     BEGIN
+        
+        INSERT INTO HurricaneData
+             Select @FKReference --Adding in foreign key
+              /*Entering in rest of the parametrs To DO*/
+     END
+     
+        DELETE FROM #Imports where content = @StageID
+END
              	                                         
                                                       
