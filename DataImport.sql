@@ -59,8 +59,9 @@ BEGIN
 	BEGIN
 		ROLLBACK tran
 	END			
-	PRINT @@ERROR_MESSAGE() --Displays what the error is appearing 
-     END CATCH
+	PRINT @@ERROR_MESSAGE() as 'Error Message' --Displays what the error is appearing 
+	PRINT @@ERROR_LINE() as 'Line of Error'
+     END CATCH;
      
      ELSE --If data row
      BEGIN TRY
@@ -96,8 +97,9 @@ BEGIN
 	BEGIN
 		ROLLBACK tran --Reverts changes back to original state
 	END				    
-	PRINT @@ERROR_MESSAGE() --Displays what the error is appearing 
-     END CATCH
+	PRINT @@ERROR_MESSAGE() as 'Error Message' --Displays what the error is appearing 
+	PRINT @@ERROR_LINE() as 'Line of Error'
+     END CATCH;
      
         DELETE FROM #Imports where content = @StageID --This record will remove the top row of the staging table and continue to do so in the while loop until staging table is gone
 END
