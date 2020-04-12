@@ -9,7 +9,7 @@ GO
 
 CREATE TABLE [dbo].[HurricaneHeader](
     [hh_id] [int] IDENTITY(1,1), --Primary key column and increments by 1
-    [hh_value] [varchar](8) NOT NULL,--Foreign Key to join with Data
+    [hh_value] [varchar](50) NOT NULL,--Foreign Key to join with Data
     [hh_name] [varchar](50) NOT NULL,
     [hh_tracks] [int] NOT NULL
 );
