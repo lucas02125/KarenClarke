@@ -29,7 +29,7 @@ CREATE TABLE [dbo].[HurricaneData](
     [hd_SE60] [int] NULL,
     [hd_NW60] [int] NULL,
     [hd_SW60] [int] NULL,
-)
+);
 
 ALTER TABLE [dbo].[HurricaneData] ADD CONSTRAINT [PK_HurricaneData] PRIMARY KEY ([hd_id])--Declares for Primary key
 GO
