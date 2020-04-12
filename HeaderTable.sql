@@ -12,7 +12,7 @@ CREATE TABLE [dbo].[HurricaneHeader](
     [hh_value] [varchar](8) NOT NULL,--Foreign Key to join with Data
     [hh_name] [varchar](50) NOT NULL,
     [hh_tracks] [int] NOT NULL
-)
+);
 
 ALTER TABLE [dbo].[HurricaneHeader] ADD CONSTRAINT [PK_HurricaneHeader] PRIMARY KEY ([hh_id])--Declares for Primary key
 GO
