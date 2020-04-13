@@ -1,6 +1,9 @@
 /*  What I intend to do here is to import and load the HUDART data into a staging table and then split the content based on 
 its values content into either the header or data table
 */
+USE [DatabaseName]
+GO
+
 --Importing text file into staging table
  If Object_ID (N'tempdb..#Imports',N'U') Is Not Null --Checks to see if there is data present in the staging table, if yes, drop, this will refresh with updated data 
   DROP TABLE #Imports
