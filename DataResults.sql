@@ -16,6 +16,9 @@ AND hd.hd_longitude BETWEEN @startpointLong AND @endpointLong
 /* For the longitude and latitude I had ideas of taking in as geography data type but converting seemed a bit too tricky
 I used a startpoint and enpoint of latitude and longitude for the area of Florida and used the between clause to have an general data return 
 of areas the storm could hit in the Florida region
+
+Potentially incorrporating an index for the startpoints and endpoints of the coordinates to enhance result performance/speed
+
 AND hd.hd_identifier = 'L' As suggested in email, not to use Landfall identifier as 
 */
 
