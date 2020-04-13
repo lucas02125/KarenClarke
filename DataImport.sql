@@ -47,7 +47,7 @@ BEGIN
 	BEGIN tran --Transaction to help commit and rollback changes that could be implemented on the table																																								
 	SET @FKReference = SUBSTRING(@StageID,1,8) --Gets the foreign key that we will be inserting
 	INSERT INTO HurricaneHeader		
-	     SELECT cast(value.[1] as varchar(8))
+	     SELECT cast(value.[1] as varchar(8)) --Taking in split rows from the CTE and incoorporating them into columns needed into insertion command
          ,cast(value.[2] as varchar(50))
          ,cast(value.[3] as int)	
 	     FROM r2c order by pr asc
@@ -77,7 +77,7 @@ BEGIN
 	    ,cast(value.[5] as varchar(10))
 	    ,cast(value.[6] as varchar(10))
 	    ,cast(value.[7] as int)
-	    ,cast(value.[8] as int)
+	    ,cast(value.[8] as int) --For Wind radii max extent, Could possiby read them in as -999 and do case when/REPLACE to form them to NULL
 	    ,cast(value.[9] as int)
 	    ,cast(value.[10] as int)
 	    ,cast(value.[11] as int)
