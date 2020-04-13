@@ -47,10 +47,10 @@ BEGIN
 	BEGIN tran --Transaction to help commit and rollback changes that could be implemented on the table																																								
 	SET @FKReference = SUBSTRING(@StageID,1,8) --Gets the foreign key that we will be inserting
 	INSERT INTO HurricaneHeader		
-	     SELECT cast(pr.[1] as varchar(8))
-         ,cast(pr.[2] as varchar(50))
-         ,cast(pr.[3] as int)	
-	     FROM r2c	
+	     SELECT cast(value.[1] as varchar(8))
+         ,cast(value.[2] as varchar(50))
+         ,cast(value.[3] as int)	
+	     FROM r2c order by pr asc
 	COMMIT tran --publishes changes onto table			
 																																																			
      END TRY
@@ -70,26 +70,26 @@ BEGIN
 				 
        INSERT INTO HurricaneData		
 	     SELECT @FKReference --using FK declared from when the header row was declared 
-	    ,cast(pr.[1] as date) --adding in the values from the CTE and casting them to fit in what is required from table schema
-            ,cast(pr.[2] as int)
-            ,cast(pr.[3] as varchar(1))
-	    ,cast(pr.[4] as varchar(2))
-	    ,cast(pr.[5] as varchar(10))
-	    ,cast(pr.[6] as varchar(10))
-	    ,cast(pr.[7] as int)
-	    ,cast(pr.[8] as int)
-	    ,cast(pr.[9] as int)
-	    ,cast(pr.[10] as int)
-	    ,cast(pr.[11] as int)
-	    ,cast(pr.[12] as int)
-	    ,cast(pr.[13] as int)
-	    ,cast(pr.[14] as int)
-	    ,cast(pr.[15] as int)
-	    ,cast(pr.[16] as int)
-	    ,cast(pr.[17] as int)
-	    ,cast(pr.[18] as int)
-	    ,cast(pr.[19] as int)		
-	     FROM r2c	
+	    ,cast(value.[1] as date) --adding in the values from the CTE and casting them to fit in what is required from table schema
+            ,cast(value.[2] as int)
+            ,cast(value.[3] as varchar(1)) --These insertions may not be what is the correct procedure to take retrieve the values in and parse, need to follow up
+	    ,cast(value.[4] as varchar(2))
+	    ,cast(value.[5] as varchar(10))
+	    ,cast(value.[6] as varchar(10))
+	    ,cast(value.[7] as int)
+	    ,cast(value.[8] as int)
+	    ,cast(value.[9] as int)
+	    ,cast(value.[10] as int)
+	    ,cast(value.[11] as int)
+	    ,cast(value.[12] as int)
+	    ,cast(value.[13] as int)
+	    ,cast(value.[14] as int)
+	    ,cast(value.[15] as int)
+	    ,cast(value.[16] as int)
+	    ,cast(value.[17] as int)
+	    ,cast(value.[18] as int)
+	    ,cast(value.[19] as int)		
+	     FROM r2c order by pr asc	
 	COMMIT Tran
      END TRY
      BEGIN CATCH
