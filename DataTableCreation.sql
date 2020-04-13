@@ -40,3 +40,9 @@ GO
 
 ALTER TABLE [dbo].[HurricaneData] ADD Constraint [DF_HurricaneData] DEFAULT (NULL) for [hd_identifier] -- Rule to set the empty strings as null if no value found
 GO
+
+CREATE INDEX idxLatitude on TABLE [dbo].[HurricaneData] (hd_latitude)
+GO
+
+CREATE INDEX idxLongitude on TABLE [dbo].[HurricaneData] (hd_longitude)
+GO
