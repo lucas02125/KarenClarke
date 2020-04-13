@@ -7,8 +7,8 @@ SELECT
 REPLACE(hh.hh_Name,' ','') as 'Name of Hurricane' -- Values coming back from this file have uneeded white space so the Replace function is to remove 
 ,hh.hh_Date as 'Date of Landfall' --No specification of time as this is just required for time
 ,hd.hd_windspeed as 'Max Wind Speed'
-FROM HurricaneHeader hh 
-INNER JOIN HurricaneData hd ON hh.hh_Value = hd.hd_hh_Value --Inner join with header data and row data to join data of wind speed and date/Name
+FROM dbo.HurricaneHeader hh 
+INNER JOIN dbo.HurricaneData hd ON hh.hh_Value = hd.hd_hh_Value --Inner join with header data and row data to join data of wind speed and date/Name
 WHERE hd.hd_date > '1900-01-01' --Since 1900
 AND hd.hd_status = 'HU' --Ensuring status is a Hurricane
 AND hd.hd_latitude BETWEEN @startpointLat AND @endpointLat
