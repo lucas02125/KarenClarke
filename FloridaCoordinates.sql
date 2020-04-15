@@ -1,7 +1,7 @@
 CREATE TABLE Florida( --This table will store the full polygon 
     point int,
-    latitude float,
-    longitude float
+    longitude float,
+    latitude float
 )
 
 INSERT INTO Florida
