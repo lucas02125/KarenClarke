@@ -1,4 +1,4 @@
-# KarenClarke
+# HURDAT2 Project
 HUDART Data project by Michael Lucas
 
 The scope of this assignment was to build an application to parse the HURDAT2 data, identify
